@@ -304,7 +304,7 @@ app.get('/display', function(req,res) {
   
         if(lengthOfArray == 0) {
           var display = "noGoogleMap";
-          var googleMap = "http://localhost:3000/";
+          var googleMap = "https://webmix.mybluemix.net/";
         } else {
           var display = "hasGoogleMap";
            var googleMap = " https://www.google.com/maps/preview/@" + log + "," + lat + ",20z";
