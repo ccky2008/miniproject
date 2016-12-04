@@ -172,7 +172,6 @@ app.get('/createRestaurant', function(req, res) {
 
 
 app.post('/create', function(req, res) {
-    var testString = "dddd";
     var name = req.body.name;
     var cuisine = req.body.cuisine;
     var street = req.body.street;
@@ -184,13 +183,30 @@ app.post('/create', function(req, res) {
     var username = req.session.username;
     var sampleFile = (req.files != null) ? new Buffer(req.files.sampleFile.data).toString('base64') : null;
     var mimetype = req.files.sampleFile.mimetype;
+    var mimetypeCheck = "application/octet-stream";
+    var coord = [];
+        coord.push(log);
+        coord.push(lat);
+    var lengthOfArray = coord[0].length + coord[1].length;
     MongoClient.connect(mongourl,function(err,db) {
       console.log('Connected to mlab.com');
       assert.equal(null,err);
       create(db,name,cuisine,street,building,zipcode,log,lat,borough,username,sampleFile, mimetype,function(result) {
           db.close();
           if (result.insertedId != null) {
-            res.redirect('/');
+            if(lengthOfArray == 0) {
+              var display = "noGoogleMap";
+              var googleMap = "https://webmix.mybluemix.net/";
+          } else {
+              var display = "hasGoogleMap";
+              var googleMap = " https://www.google.com/maps/preview/@" + log + "," + lat + ",20z";} 
+
+         if (mimetype == mimetypeCheck) {
+             var imageToshow = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxENEBITExIVEBUXGCEYFxgSERgXGhUdGxoWGRcXFxwaHjQgGR4lJx0YITchJSkrLi4uFys1ODcsNyguLisBCgoKDQwNGg8PGjcmHyY3NTcvNzcvOC8wLTcvNTc1Li03KzU1NS0vODguODg1LTU3LTg1NS0tNS0vNzc1NS01Nf/AABEIAEUARQMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAAABQQGBwMCAf/EAD8QAAECAwQGBgcECwAAAAAAAAECAwAEEQUSITEGE0FRYXEHMoGRscEVIkJyocLRFFJikiMkJVRkc4KEssPh/8QAGgEAAgMBAQAAAAAAAAAAAAAAAwQBAgUABv/EACYRAAICAQMDAwUAAAAAAAAAAAECAAMRBBIxITJBE1FxBSIzYeH/2gAMAwEAAhEDEQA/ANS0u0paspoKUNY4vBtsGhVTMnckbTGdr0xtebJLSgyNgZZSqnMrBqe6OVvk2jbLyVH1UKDSRuSgC93m8YvknKpbSEpASBujB1/1F67NiRSy1t21ZRVi2XcVTMwOS0t/40iC/Lzo686+eH25Z+AVF5tyXacWwhxVwFRqeFPM0EVe0mmmpl5lBKtWQDUZVFacf+wCu3UWV+qW6Sv34yTESmHjm88ecw59YBLvDJ54cphf1hvqxuj5qxujvWf3ldx94ubfnW+pNzKf7lah3FVPhFh0X6Qphh1LU6rWtqNNYUhKm64AqugBSeNKjjC8tCFNsS4KTUZeEGq1VitzLLYwM38GsEVro5tEzVnMFRqpFW1E5m4SkE8SLp7Y+xvKdwBEcByJntkq/bM0T+8PfBS4s50laAN1KieNAO+sU3Xam1JpX8U78VL+sSJBBdoEi8VHDtjy+oqD3kmIt3mSp2cW8srUcdlMhuAibbEm46+HUNrUl1pCiUoJAUPVVU78u6HvopFnSzj5b+0OoQVUArkK0QPOJGiFtPTzalOtFkgimNQQeNB4RqU6PanpucZ8fEOtfTDeZSHG1INFJKfeBHjHmNSmpRDySlaQocRFMtPRpTThuqSG87y1ABPAwK7QOnVOsq1JHEQQvtcgIPGHzds2ZK30Lc+0qIzQ2VBNNxG2KfOTWuF6hAxoDu2QB9O1eCT/ACUZCOZpPQy5WTmE7pg07W2T9YI8dDA/Vpr+f/qagjco/GsbTtEpWkyLlozwy/TV/MkK84caJWXNECZZum6rBKva3xE02lT6YmUgYuatQ7W0J8UmNQsiREsw22PZGPPbCNenD3sT4gVTLmQ7O0iaeVq1gsPDNtzA80n2hyhs2BT1aU4ZfCIdq2SxOJuuoCtxyUk70kYgxX12VaEiay7om2/uPKuuAbgvJX9QjQyRzD8RxpQZkSyzLAKd2AxX3pWZnrJfRNt0cTVSMKXrlFJJGzGohlJaXNXgiZSuTcyo+m6CeCuqrsMOLSmUBharwKbudRSm2IIDeekjmYiylIAugAEYUjxNZQSAOqb90R5m8o8+O6JeZqXQ63dknzvmCe5tlPlBEzoqau2ck/edcPctSflj7G/SMVr8R1O0Rdb9n3rflVHJTNeZaKz8yYuMJtNpR1Oom2UaxyWUSUDNbaxRwDjgD2R7sbSOVnUhTbqa7UqUAoHcQYlQFY/ucOhMbQQCPsElpzfYS4ClaQsHYoVEZr0iWJKSqG7iS2pxd242opSRiSSkYUw3RphWBmQO2Md03tlM3PG6aoZBSMcCo9YjwhfVMFqJlLDhYvQigoBkNm6IUwrEc4Z2XaRBLYKUheajmBtAJyrHCZlEzL7bEumq1+rhjnmo8AMSeEYFe42bcRIZ3Ymx6AsaqzJQb2wv89V+cEOpOXDLaGxkhISOQFII9MowAI+J2hFaeh8hNqK3JZBUc1JqhR5lBBMEEcQDzJi9XR5JDqGYa9yac+YmODnR22erPTyOUwk+KIIIjYsjAkV/o0v4ekZsj8S0nyiKjolaSKCbc7WkQQRVqUbkSCoM6I6J2PamniPwpbT4pMWnR7RWUs0HUt+ucC4s3lnhU5DgKCCCOWpE6qJwUDiO4IIIJLT/2Q=="
+         } else {
+          var imageToshow = "data:" + mimetype +";base64," + image;}
+            res.render('create',{ display:display, googleMap:googleMap, image:imageToshow, name:name,borough:borough, cuisine:cuisine, username:username, street:street,
+                   building:building, zipcode:zipcode, lat:lat, log:log});
           } else {
             res.status(500);
             res.end(JSON.stringify(result));
@@ -198,6 +214,7 @@ app.post('/create', function(req, res) {
       });
     });
 });
+
 
 //_____________________________
 //_____________________________
