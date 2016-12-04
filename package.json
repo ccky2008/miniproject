@@ -1,0 +1,25 @@
+{
+  "name": "myapp",
+  "version": "0.0.1",
+  "description": "test",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "body-parser": "^1.15.2",
+    "cfenv": "^1.0.3",
+    "cookie-session": "^1.2.0",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-fileupload": "0.0.5",
+    "mongodb": "^2.2.11",
+    "url": "^0.11.0"
+  },
+  "engines": {
+    "node": "4.x"
+  }
+}

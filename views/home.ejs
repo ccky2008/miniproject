@@ -1,0 +1,48 @@
+<html>
+<body>
+<head>
+  <title>Homepage</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type="text/css">
+  
+a:hover {
+    text-decoration: none;
+}
+
+</style>
+</head>
+
+  <div class = "container">
+    <h2>User:<%= name %></h2>
+
+   <a href="https://webmix.mybluemix.net/logout">
+     <button type="button" name="logout" class="btn btn-danger">Logout</button>
+   </a>
+
+   <a href="https://webmix.mybluemix.net/createRestaurant">
+    <button type="button" name="new" class="btn btn-success">New Restaurants</button>
+   </a>
+  </div>
+  
+  <br/>
+
+  <div class = "container">
+   <table class="table table-striped table-bordered">
+     <tr>
+       <th>Restaurant Name</th>
+     </tr>
+     <% c.forEach(function(restaurant) { %>
+     <tr>
+       <td><a href=/display?_id=<%= restaurant._id %>><%= restaurant.name %></a></td>
+     </tr>
+      <% });                        %>
+   </table>
+  </div>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type="text/css">
+.container {
+	padding: 15px;
+}
+
+.container > .input-group {
+	text-align: center;
+}
+.container > form > div.input-group > input{
+	margin: 10px;
+}
+
+.btn{
+
+  margin:10px;
+  margin-left:70px;
+}
+
+
+
+</style>
+</head>
+<body>
+
+  <div class = "container">
+   <form action="/login" method="post">
+    <div class="input-group">
+      <input type="text" name="name" class="form-control" placeholder="Username">
+    </div>
+    <div class="input-group">
+      <input type="password" name="password" class="form-control" placeholder="Password">
+    </div>
+    <button type="submit" name="signin" class="btn btn-default">SignIn</button>
+    </form>
+   <a href="https://webmix.mybluemix.net/">
+     <button type="submit" name="signup" class="btn btn-primary">SignUp</button>
+   </a>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

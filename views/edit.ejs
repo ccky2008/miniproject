@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type="text/css">
+
+
+.container > button {
+  margin-top: 20px;
+}
+
+</style>
+</head>
+<body>
+
+
+ <form action="/editRestaurant" method="post" enctype="multipart/form-data">
+  <div class = "container">
+   <br/>
+   <br/>
+    <div class="form-group">
+      <label for="restaurantNameLabel">Restaurant Name:</label>
+      <input type="text" name="name" class="form-control" value=<%=restaurantname%> required>
+    </div>
+        <div class="form-group">
+      <label for="boroughLabel">Borough:</label>
+      <input type="text" name="borough" class="form-control" value=<%=boroughname%> >
+    </div>
+    <div class="form-group">
+      <label for="cuisineLabel">Cuisine:</label>
+      <input type="text" name="cuisine" class="form-control" value=<%=cuisinename%> >
+    </div>
+    <div class="form-group">
+      <label for="streetLabel">Street:</label>
+      <input type="text" name="street" class="form-control" value=<%=streetname%> >
+    </div>
+	<div class="form-group">
+      <label for="buildingLabel">Building:</label>
+      <input type="text" name="building" class="form-control" value=<%=buildingname%> >
+    </div>
+    <div class="form-group">
+      <label for="zipcodeLabel">Zipcode:</label>
+      <input type="text" name="zipcode" class="form-control" value=<%=zipcodename%> >
+    </div>
+    <div class="form-group">
+      <label for="longitudeLabel">Coordinate(Longitude)</label>
+      <input type="text" name="longitude" class="form-control" value=<%=long%> >
+    </div>
+    <div class="form-group">
+      <label for="latitudeLabel">Coordinate(Latitude)</label>
+      <input type="text" name="latitude" class="form-control" value=<%=lat%> >
+    </div>
+    <div class="input-group">
+      <input type="file" name="sampleFile">
+    </div>
+    <button type="submit" name="edit" class="btn btn-primary">Edit</button>
+  </div>
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type="text/css">
+.container {
+	padding: 15px;
+}
+
+.container > .input-group {
+	text-align: center;
+}
+.container > .input-group > input{
+	margin: 10px;
+}
+
+.container > button {
+	margin-left: 70px;
+  margin-top: 20px;
+}
+
+</style>
+</head>
+<body>
+
+ <form action="/create" method="post" enctype="multipart/form-data">
+  <div class = "container">
+   <h1>New Restaurant</h1>
+    <div class="input-group">
+      <input type="text" name="name" class="form-control" placeholder="Name" required>
+    </div>
+    <div class="input-group">
+      <input type="text" name="borough" class="form-control" placeholder="Borough">
+    </div>
+    <div class="input-group">
+      <input type="text" name="cuisine" class="form-control" placeholder="Cuisine">
+    </div>
+    <div class="input-group">
+      <input type="text" name="street" class="form-control" placeholder="Street">
+    </div>
+	<div class="input-group">
+      <input type="text" name="building" class="form-control" placeholder="Building">
+    </div>
+    <div class="input-group">
+      <input type="text" name="zipcode" class="form-control" placeholder="Zipcode">
+    </div>
+    <div class="input-group">
+      <input type="text" name="longitude" class="form-control" placeholder="Coordinate(Longitude)">
+    </div>
+    <div class="input-group">
+      <input type="text" name="latitude" class="form-control" placeholder="Coordinate(Latitude)">
+    </div>
+    <div class="input-group">
+      <input type="file" name="sampleFile">
+    </div>
+    <button type="submit" name="create" class="btn btn-primary">Create</button>
+  </div>
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

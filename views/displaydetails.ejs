@@ -1,0 +1,70 @@
+<html>
+<body>
+<head>
+  <title>Display</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type="text/css">
+
+a:hover {
+  text-decoration: none;
+}
+.hasGoogleMap {
+  display: block;
+}
+
+.noGoogleMap {
+  display: none;
+  color: blue;
+}
+</style>
+</head>
+ <br/>
+
+ <div class="container">
+   <a href="https://webmix.mybluemix.net/">
+     <button type="button" name="home" class="btn btn-primary">Home</button>
+   </a>
+   <a href=/rate?_id=<%= id %>&username=<%=username%>>
+     <button type="button" name="rate" class="btn btn-success">Rate</button>
+   </a>
+   <a href=/edit?_id=<%= id %>&username=<%=username%>>
+     <button type="button" name="edit" class="btn btn-warning">Edit</button>
+   </a>
+  <a href=/remove?_id=<%= id %>&username=<%=username%>>
+    <button type="button" name="update" class="btn btn-danger">Delete</button>
+   </a>
+ </div>
+
+ <br/>
+
+<div class= "container">
+ <a class=<%=display%> href=<%=googleMap %> target="_blank" >GoogleMap</a> 
+</div>
+
+
+ <div class="container">
+   <h1>Restuarant</h1>
+   <ul class="list-group">
+     <li class="list-group-item">
+        <img src=<%=image%> />
+     </li>
+     <li class="list-group-item">Name : <%= name %></li>
+     <li class="list-group-item">Borough : <%= borough %></li>
+     <li class="list-group-item">Cuisine : <%= cuisine %></li>
+     <li class="list-group-item">Creator : <%= username %></li>
+     <li class="list-group-item">Street : <%= street %></li>
+     <li class="list-group-item">Building : <%= building %></li>
+     <li class="list-group-item">Zipcode : <%= zipcode %></li>
+     <li class="list-group-item">Coord : [<%= log %>][<%= lat %>]</li>
+     <li class="list-group-item">Rate : <%= rate %></li> 
+   </ul>
+ </div>
+   
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
